@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ContextFlow - AI Context Intelligence Agent</title>
+  <meta name="description" content="AI-powered follow-up and context intelligence for sales and support teams. Never lose context. Never miss a follow-up." />
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%236366f1'/></svg>" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span class="logo-text">ContextFlow</span>
+      </div>
+      <span class="header-tagline">AI-powered follow-up and context intelligence for sales and support teams</span>
+    </div>
+  </header>
+
+  <!-- Hero / Explainer -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-headline">Never lose context. Never miss a follow-up.</h1>
+      <p class="hero-sub">
+        Paste messy call notes, meeting transcripts, or CRM updates. ContextFlow extracts insights,
+        tracks every commitment, detects risks, and tells you exactly what to do next.
+      </p>
+      <div class="value-props">
+        <div class="value-card">
+          <div class="value-card-icon-dot"></div>
+          <div class="value-card-title">Context Memory</div>
+          <div class="value-card-desc">Remembers every interaction, objection, and promise across time so you never start from scratch.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-card-icon-dot" style="background:#22c55e;"></div>
+          <div class="value-card-title">Commitment Tracking</div>
+          <div class="value-card-desc">Tracks every promise with state: pending, fulfilled, vague, or overdue. Vague promises are flagged automatically.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-card-icon-dot" style="background:#f59e0b;"></div>
+          <div class="value-card-title">Risk Intelligence</div>
+          <div class="value-card-desc">Surfaces risk signals and recommended next steps automatically, before you lose the deal or the customer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pipeline Steps -->
+  <div class="container">
+    <div class="pipeline">
+      <span class="pipeline-step">Paste Note</span>
+      <span class="pipeline-arrow">&rarr;</span>
+      <span class="pipeline-step">Extract Insights</span>
+      <span class="pipeline-arrow">&rarr;</span>
+      <span class="pipeline-step">Retrieve Context</span>
+      <span class="pipeline-arrow">&rarr;</span>
+      <span class="pipeline-step">Detect Risks</span>
+      <span class="pipeline-arrow">&rarr;</span>
+      <span class="pipeline-step">Track Commitments</span>
+      <span class="pipeline-arrow">&rarr;</span>
+      <span class="pipeline-step">Get Actions</span>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Pending Items Banner -->
+    <div class="pending-banner" id="pending-banner">
+      <!-- Populated by app.js on page load -->
+    </div>
+    <div class="container">
+
+      <!-- Input Panel -->
+      <div class="input-panel">
+        <div class="input-panel-title">New Interaction</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="customer-select">Customer</label>
+            <select class="form-select" id="customer-select">
+              <!-- Populated dynamically by app.js -->
+              <option value="__new__">+ New Customer</option>
+            </select>
+          </div>
+          <div class="form-group" style="justify-content:flex-end;">
+            <button class="history-toggle" id="history-toggle" type="button">View Customer History</button>
+          </div>
+        </div>
+
+        <!-- Context preview -->
+        <div class="context-preview" id="context-preview">
+          <div class="ctx-stat">
+            <span class="ctx-stat-value" id="ctx-interactions">&mdash;</span>
+            <span class="ctx-stat-label">Interactions</span>
+          </div>
+          <div class="ctx-stat">
+            <span class="ctx-stat-value" id="ctx-commitments">&mdash;</span>
+            <span class="ctx-stat-label">Open Commitments</span>
+          </div>
+          <div class="ctx-stat">
+            <span class="ctx-stat-value" id="ctx-risk">&mdash;</span>
+            <span class="ctx-stat-label">Latest Risk</span>
+          </div>
+        </div>
+
+        <!-- New customer fields (hidden by default) -->
+        <div class="new-customer-fields" id="new-customer-fields">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="new-customer-id">Customer ID</label>
+              <input class="form-input" id="new-customer-id" type="text" placeholder="e.g. cust_jane_003" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="new-customer-name">Customer Name</label>
+              <input class="form-input" id="new-customer-name" type="text" placeholder="e.g. Jane Doe" />
+            </div>
+          </div>
+          <button class="save-customer-btn" id="save-customer-btn" type="button">Save Customer</button>
+          <div class="inline-error" id="save-customer-error"></div>
+        </div>
+
+        <!-- History panel (expandable) -->
+        <div class="history-panel" id="history-panel">
+          <div class="output-card" style="margin-bottom:1rem;">
+            <div class="output-card-header">
+              <span class="output-card-label">Customer History</span>
+            </div>
+            <div id="history-content">
+              <span style="color:#3f3f46;font-size:0.82rem;">Loading...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div class="examples-section">
+          <div class="examples-label">Try an example</div>
+          <div class="examples-row">
+            <button class="example-btn" type="button" data-example="sales">
+              <span class="example-btn-label">Sales Follow-up</span>
+              Hinglish call with pricing hesitation and vague next steps
+            </button>
+            <button class="example-btn" type="button" data-example="support">
+              <span class="example-btn-label">Support Escalation</span>
+              Frustrated customer with broken promise on bug fix timeline
+            </button>
+            <button class="example-btn" type="button" data-example="vague">
+              <span class="example-btn-label">Vague Commitment</span>
+              Non-committal response with no timeline or owner clarity
+            </button>
+          </div>
+        </div>
+
+        <!-- Interaction date -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="interaction-date">Interaction Date</label>
+            <input class="form-input" id="interaction-date" type="date" />
+          </div>
+          <div class="form-group"></div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="form-label" for="interaction-input">Interaction Note</label>
+          <textarea class="form-textarea" id="interaction-input"
+            placeholder="Paste a call transcript, meeting note, or CRM update here..."></textarea>
+          <div class="input-hint">Supports English, Hindi, and Hinglish. Handles vague commitments, missing names, and conflicting signals.</div>
+        </div>
+
+        <!-- Inline error -->
+        <div class="inline-error" id="inline-error"></div>
+
+        <!-- Analyze button -->
+        <button class="analyze-btn" id="analyze-btn" type="button">
+          <span class="btn-spinner"></span>
+          <span class="btn-label">Analyze Interaction</span>
+        </button>
+      </div>
+
+      <!-- Output Panel -->
+      <div class="output-panel" id="output-panel">
+        <!-- Populated by app.js after analysis -->
+      </div>
+
+      <!-- Empty State (shown before first analysis) -->
+      <div class="empty-state" id="empty-state">
+        <div class="empty-state-icon-dot"></div>
+        <div class="empty-state-text">
+          Run your first analysis to see insights, commitments, and risk signals appear here.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      ContextFlow - Context Intelligence Agent
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
