@@ -3,7 +3,7 @@
    Vanilla JS. All API calls via fetch(). Zero external dependencies.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = "https://rutvi22-contextflow.hf.space";
 
 // ─── Example prompts ─────────────────────────────────────────────────────────
 
